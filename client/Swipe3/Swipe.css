@@ -1,0 +1,150 @@
+/* Swipe/Swipe.css */
+
+/* --- 基本設定（共通） --- */
+html, body {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    /* --- ★ここからが重要！スワイプ戻る・バウンス防止 --- */
+    
+    /* 1. 横スワイプによる「戻る/進む」をブラウザに禁止させる最強の呪文 */
+    overscroll-behavior-x: none; 
+    overscroll-behavior-y: none; /* 縦のバウンスも防止 */
+    
+    /* 2. 画面自体を固定して、余計なスクロールを許さない */
+    position: fixed; 
+    overflow: hidden; 
+    
+    /* 3. ピンチズームや余計なタッチ操作を無効化 */
+    /* 注意: アンケート画面でスクロールが必要な場合はここを変える必要があります（後述） */
+    touch-action: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+
+    /* ★変更ポイント1: 中央揃えをやめる */
+    justify-content: flex-start; 
+    align-items: center;
+
+    /* ★変更ポイント2: 上から固定の位置に押し下げる */
+    /* これで画面の高さに関わらず、常に同じ位置から始まります */
+    padding-top: 30vh; 
+}
+
+.center-area {
+    width: 100%;
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* 箱の下の隙間も固定 */
+    margin-bottom: 60px; 
+    padding-bottom: 0;
+}
+
+.black-box {
+    /* 幅と高さを完全に固定 */
+    width: 80%;
+    height: 140px;
+    
+    background-color: #EEEEEE;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    
+    /* 念のため overflow 設定 */
+    overflow: hidden; 
+}
+
+.bottom-area {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+/* 「左から右にスワイプしてください」の部分 */
+.instruction-text {
+    /* Displayと同じ設定に統一 */
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    line-height: 1.5;
+    
+    /* 下に余白を持たせる（Displayと揃える） */
+    margin: 0 0 20px 0;
+}
+
+/* --- 【追加】スライダーのスタイル --- */
+.gesture-area {
+    position: relative;
+    width: 240px;
+    height: 120px;
+}
+
+.curve-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.curve-path {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 12;
+    stroke-linecap: round;
+}
+
+.swipe-handle {
+    width: 50px;
+    height: 50px;
+    background-color: #007AFF;
+    border-radius: 50%;
+
+    position: absolute;
+    left: 5px;
+    top: 70px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    touch-action: none;
+}
+
+.swipe-handle:active {
+    cursor: grabbing;
+}
+
+.swipe-handle svg {
+    transition: transform 0.1s ease;
+    transform-origin: center;
+}
