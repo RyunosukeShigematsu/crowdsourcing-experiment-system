@@ -80,6 +80,6 @@ function completeSwipe() {
     window.onbeforeunload = null;
 
     setTimeout(() => {
-        window.location.replace('../Display/Display.html'); 
+        window.location.replace('../Touch1/Touch.html'); 
     }, 500);
 }

@@ -1,0 +1,136 @@
+/* Display.css */
+
+/* htmlとbodyの両方に設定する */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+
+    position: fixed;
+    overflow: hidden;
+
+    touch-action: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-top: 30vh;
+}
+
+.center-area {
+    width: 100%;
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 60px;
+    padding-bottom: 0;
+}
+
+.black-box {
+    width: 80%;
+    height: 140px;
+
+    background-color: #EEEEEE;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+/* 日本の国旗 */
+.flag-display {
+    width: 220px;
+    height: 140px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.flag-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #bc002d;
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 下のエリア */
+.bottom-area {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+/* 指示文 */
+.instruction-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+/* 丸ボタン */
+.round-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007AFF;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.round-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+.round-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}

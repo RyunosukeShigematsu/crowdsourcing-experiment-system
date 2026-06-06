@@ -43,6 +43,6 @@ if (!targetLetter) {
 
         // 警告を解除してから移動
         window.onbeforeunload = null;
-        window.location.replace('../Swipe/Swipe.html');
+        window.location.replace('../Display2/Display.html');
     });
 });

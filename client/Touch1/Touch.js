@@ -46,6 +46,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // 警告を解除してから移動
         window.onbeforeunload = null;
-        window.location.replace('../Swipe/Swipe.html');
+        window.location.replace('../Display3/Display.html');
     });
 });

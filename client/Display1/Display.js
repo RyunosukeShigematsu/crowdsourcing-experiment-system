@@ -9,8 +9,7 @@ const SCALE_FACTOR = 2.0;  // 強調倍率
 // ==========================================
 // ランダム決定ロジック (ページ読み込み時に決定)
 // ==========================================
-const infoTypes = ['clock', 'number'];
-const currentInfoType = infoTypes[Math.floor(Math.random() * infoTypes.length)];
+const currentInfoType = 'clock';
 const currentEmphasis = Math.floor(Math.random() * 3);
 
 // Test画面でも使うため保存 (キー名は変えない)
@@ -33,25 +32,13 @@ const instructionText = document.querySelector('.instruction-text');
 // ページ読み込み時の初期設定
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
-    
+
     // 戻るボタン対策
     history.pushState(null, null, location.href);
     window.addEventListener('popstate', () => history.go(1));
     window.onbeforeunload = () => "データが失われますがよろしいですか？";
 
-    // --- 【変更】説明文の生成 ---
-    let targetWord = "";
-    
-    if (currentInfoType === 'number') {
-        targetWord = "数字";
-        document.getElementById('timeContainer').classList.add('number-mode');
-    } else {
-        targetWord = "時刻";
-        document.getElementById('timeContainer').classList.remove('number-mode');
-    }
-
-    // ★変更箇所: 2行の文章にしました
-    instructionText.innerHTML = `ボタンを押すと${targetWord}が表示されます。<br>表示される${targetWord}をみてください。`;
+    instructionText.innerHTML = `ボタンを押すと時刻が表示されます。<br>表示される時刻をみてください。`;
 });
 
 // 0埋め関数
@@ -85,8 +72,6 @@ class RandomBag {
 // バッグの用意
 const hourBag = new RandomBag(0, 23);
 const minuteBag = new RandomBag(0, 59);
-const numBagLeft = new RandomBag(0, 99);
-const numBagRight = new RandomBag(0, 99);
 
 
 // ==========================================
@@ -99,17 +84,9 @@ showBtn.addEventListener('click', () => {
     // 1. 値の決定とコロンの処理
     let leftVal, rightVal;
 
-    if (currentInfoType === 'clock') {
-        // --- 時計モード ---
-        leftVal = hourBag.next();
-        rightVal = minuteBag.next();
-        colonText.style.display = 'inline'; 
-    } else {
-        // --- 数字モード ---
-        leftVal = numBagLeft.next();
-        rightVal = numBagRight.next();
-        colonText.style.display = 'none'; 
-    }
+    leftVal = hourBag.next();
+    rightVal = minuteBag.next();
+    colonText.style.display = 'inline';
 
     // --- 提示刺激を保存 ---
     const digit1 = Math.floor(leftVal / 10);
@@ -152,7 +129,7 @@ showBtn.addEventListener('click', () => {
     // 3. 表示 & 自動調整
     timeContainer.classList.remove('hidden');
 
-    const containerWidth = blackBox.clientWidth - 40; 
+    const containerWidth = blackBox.clientWidth - 40;
     const contentWidth = timeContainer.offsetWidth;
 
     if (contentWidth > containerWidth) {

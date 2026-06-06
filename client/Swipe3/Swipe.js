@@ -129,6 +129,6 @@ function completeSwipe() {
     window.onbeforeunload = null;
 
     setTimeout(() => {
-        window.location.replace('../Display/Display.html');
+        window.location.replace('../Display1/Display.html');
     }, 500);
 }
